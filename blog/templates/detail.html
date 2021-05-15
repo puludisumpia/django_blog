@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}
+    <header class="masthead" style="background-image:url('{% static "img/post-bg.jpg" %}');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <div class="post-heading">
+                        <h1>{{ post.title }}</h1>
+                        <h2 class="subheading">{{ post.subtitle }}</h2>
+                        <span class="meta">Ecrit par &nbsp;
+                            <a href="mailto:{{ post.author.email }}">{{ post.author.first_name }}</a>&nbsp; 
+                            le {{ post.date }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock header %}
+
+{% block content %}
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    {{ post.content|safe }}
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock content %}

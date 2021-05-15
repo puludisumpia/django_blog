@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load bootstrap_pagination %}
+
+{% block header %}
+    <header class="masthead" style="background-image:url('{% static "img/home-bg.jpg" %}');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <div class="site-heading">
+                        <h4>Bienveu sur le</h4>
+                        <h1>Blog de Mpia M.</h1>
+                        <span class="subheading">Nous discutons ici de la programmation infirmatique.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                {% for post in posts %}
+                    <div class="post-preview">
+                        <a href="{% url 'detail' slug=post.slug %}">
+                            <h2 class="post-title">{{ post.title }}</h2>
+                            <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+                        </a>
+                        <p class="post-meta">Ecrit par &nbsp;
+                            <a href="#">{{ post.author.first_name }}</a>,
+                             le {{ post.date }}, (<b>{{ post.categorie }}</b>)
+                        </p>
+                    </div>
+                    <hr>
+                {% endfor %}
+
+                {% bootstrap_paginate posts %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
